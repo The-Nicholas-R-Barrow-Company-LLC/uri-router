@@ -30,7 +30,7 @@ class CustomURIApplication(QApplication):
         if e.type() == QEvent.FileOpen:
             url: QUrl = e.url()
             if url.isValid():
-                self.router.handle(str(url))
+                self.router.handle(url.url())
             else:
                 print(f"application received invalid uri: {url.errorString()}")
         else:
