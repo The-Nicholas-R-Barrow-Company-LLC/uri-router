@@ -1,0 +1,21 @@
+#!/usr/local/bin/bash
+
+source ./.venv/bin/activate
+
+BUILD="./build/*"
+echo "[PUBLISH] cleaning $BUILD"
+rm -r $BUILD
+
+DIST="./dist/*"
+echo "[PUBLISH] cleaning $DIST"
+rm -r $DIST
+
+echo "[PUBLISH] removing test directories"
+rm -r ./build-pkg
+rm -r ./dist-pkg
+
+echo "[PUBLISH] running setup.py"
+python3 setup.py sdist
+
+echo "[PUBLISH] publishing with twine"
+twine upload dist/*
