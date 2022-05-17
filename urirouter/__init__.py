@@ -103,8 +103,6 @@ class URIRouter:
         _logger.debug(f"registering route {route}")
         parsed = urlparse(route)
         built_uri = f"{self.scheme}://{parsed.netloc}{parsed.path}"
-        if parsed.scheme != self.scheme:
-            raise RoutingError(f"{self} cannot handle a route with scheme '{parsed.scheme}' (self.scheme != route's scheme)")
         def decorator(func):
             self.__routes__.append(_Route(built_uri, func, *args, **kwargs))
             _logger.debug(f"registered route {route}")
