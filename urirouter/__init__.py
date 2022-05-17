@@ -94,6 +94,12 @@ class URIRouter:
         return f"URIRouter('{self.scheme}://...')"
 
     def route(self, route, *args, **kwargs):
+        """
+        Register a route from a uri to a function when that uri-event occurs in a bundled app.
+        :param route: //netloc/path/path2/path... or just /path/path2/path... (DO NOT END IN '/')
+        :param args: optional args to pass to the function that is being decorated
+        :param kwargs: optional kwargs to pass to the function that is being decorated
+        """
         _logger.debug(f"registering route {route}")
         parsed = urlparse(route)
         built_uri = f"{self.scheme}://{parsed.netloc}{parsed.path}"

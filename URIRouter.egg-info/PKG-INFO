@@ -1,6 +1,6 @@
 Metadata-Version: 2.1
 Name: URIRouter
-Version: 1.0.0
+Version: 1.0.1
 Summary: Flask-style routing for URIs
 Home-page: https://github.com/The-Nicholas-R-Barrow-Company-LLC/uri-router
 Author: The Nicholas R. Barrow Company, LLC
@@ -47,7 +47,7 @@ class CustomURIApplication(QApplication):
         if e.type() == QEvent.FileOpen:
             url: QUrl = e.url()
             if url.isValid():
-                self.router.handle(str(url))
+                self.router.handle(url.url())
             else:
                 print(f"application received invalid uri: {url.errorString()}")
         else:
